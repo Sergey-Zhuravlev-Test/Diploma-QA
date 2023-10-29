@@ -4,8 +4,10 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.anything;
 
 public class ApiHelper {
     public static RequestSpecification requestSpec = new RequestSpecBuilder()
@@ -17,7 +19,7 @@ public class ApiHelper {
             .log(LogDetail.ALL)
             .build();
 
-    public static void paymentRequest(CardInfo card) {
+    public static void paymentApprovedRequest(CardInfo card) {
         given()
                 .spec(requestSpec)
                 .body(card)
@@ -25,12 +27,13 @@ public class ApiHelper {
                 .post("/pay")
                 .then()
                 .statusCode(200)
+                .body(anything("APPROVED"))
                 .extract()
                 .response()
                 .asString();
     }
 
-    public static void creditRequest(CardInfo card) {
+    public static void creditApprovedRequest(CardInfo card) {
         given()
                 .spec(requestSpec)
                 .body(card)
@@ -38,6 +41,33 @@ public class ApiHelper {
                 .post("/credit")
                 .then()
                 .statusCode(200)
+                .body(anything("APPROVED"))
+                .extract()
+                .response()
+                .asString();
+    }
+    public static void paymentDeclinedRequest(CardInfo card) {
+        given()
+                .spec(requestSpec)
+                .body(card)
+                .when()
+                .post("/pay")
+                .then()
+                .statusCode(200)
+                .body(anything("DECLINED"))
+                .extract()
+                .response()
+                .asString();
+    }
+    public static void creditDeclinedRequest(CardInfo card) {
+        given()
+                .spec(requestSpec)
+                .body(card)
+                .when()
+                .post("/credit")
+                .then()
+                .statusCode(200)
+                .body(anything("DECLINED"))
                 .extract()
                 .response()
                 .asString();
@@ -50,16 +80,20 @@ public class ApiHelper {
                 .when()
                 .post("/pay")
                 .then()
-                .statusCode(400);
+                .statusCode(500)
+                .body(Matchers.anything("400 Bad Request"));
     }
 
     public static void creditInvalidRequest(CardInfo card) {
         given()
                 .spec(requestSpec)
                 .body(card)
+                .when()
                 .post("/credit")
                 .then()
-                .statusCode(200);
+                .statusCode(500)
+                .body(Matchers.anything("400 Bad Request"));
+
     }
 
 }

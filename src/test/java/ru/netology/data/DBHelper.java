@@ -36,6 +36,7 @@ public class DBHelper {
         return status;
 
     }
+
     @SneakyThrows
     public static String getCreditQuery() {
         var query = "SELECT status FROM credit_request_entity";
@@ -43,13 +44,5 @@ public class DBHelper {
         return status;
 
     }
-    @SneakyThrows
-    public static String getApprovedPayment() {
-        var query = "SELECT status FROM payment_entity";
-        var status = runner.query(getConn(), query, new ScalarHandler<String>());
-        return status;
-
-    }
-
 
 }
