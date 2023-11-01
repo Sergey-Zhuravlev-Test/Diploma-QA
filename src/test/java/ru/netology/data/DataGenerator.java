@@ -25,7 +25,8 @@ public class DataGenerator {
     public static String getIncompleteCardNumber() {
         return "4444 4444 4444 444";
     }
-    public static String getEmptyCardNumber() {
+
+    public static String getNullValue() {
         return null;
     }
 
@@ -57,9 +58,6 @@ public class DataGenerator {
 
     public static String getInvalidMaxMonth() {
         return "99";
-    }
-    public static String getEmptyMonth() {
-        return null;
     }
 
     public static String getCurrentYear() {
@@ -98,16 +96,11 @@ public class DataGenerator {
     public static String getInvalidMaxYear() {
         return "99";
     }
-    public static String getEmptyYear() {
-        return null;
-    }
 
     public static String getValidHolderName() {
         return faker.name().firstName() + " " + faker.name().lastName();
     }
-    public static String getEmptyHolderName() {
-        return null;
-    }
+
     public static String getValidCamelCaseHolderName() {
         return "eGoR PetROv";
     }
@@ -133,7 +126,7 @@ public class DataGenerator {
     }
 
     public static String getInvalidWebAddressHolderName() {
-        return faker.internet().domainWord();
+        return faker.internet().domainName();
     }
 
     public static String getInvalidTenSpaceButtonHolderName() {
@@ -154,9 +147,6 @@ public class DataGenerator {
 
     public static String getInvalidOneCvc() {
         return faker.number().digits(1);
-    }
-    public static String getEmptyCvc() {
-        return null;
     }
 
 }

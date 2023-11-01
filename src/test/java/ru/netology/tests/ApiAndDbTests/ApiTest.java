@@ -6,21 +6,13 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.ApiHelper;
 import ru.netology.data.CardInfo;
-import ru.netology.data.DBHelper;
 
-import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataGenerator.*;
 
 public class ApiTest {
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-    }
-
-    @BeforeEach
-    void setup() {
-        open("http://localhost:8080");
-        DBHelper.clearDB();
     }
 
     @AfterAll

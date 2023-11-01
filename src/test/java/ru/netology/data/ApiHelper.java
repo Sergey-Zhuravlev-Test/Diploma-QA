@@ -10,10 +10,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.anything;
 
 public class ApiHelper {
+    private static final String sutUrl = System.getProperty("sut.url");
     public static RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://localhost")
+            .setBaseUri(sutUrl)
             .setBasePath("/api/v1")
-            .setPort(8080)
             .setAccept(ContentType.JSON)
             .setContentType(ContentType.JSON)
             .log(LogDetail.ALL)
