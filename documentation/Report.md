@@ -31,7 +31,7 @@
 На все проваленные тесты заведены [ISSUE](https://github.com/Sergey-Zhuravlev-Test/Diploma-QA/issues).
 
 Создан отчет на базе Allure:
-![AllureReport.png](..%2F..%2F..%2F..%2F..%2FDownloads%2FAllureReport.png)
+![AllureReport.png](C:\Users\vesnu\Desktop\Sergey\IntelliJ IDEA\Diploma-QA\documentation\AllureReport.png)
 
 
 ### *Общие рекомендации*
